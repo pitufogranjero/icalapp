@@ -1,2 +1,9 @@
 main.py
 response.json
+api_key.txt
+api_key_rapid.txt
+docs
+static
+calendars
+__pycache__
+.vscode
