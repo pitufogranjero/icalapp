@@ -1,7 +1,7 @@
 from supabase import create_client, Client
 
 #modules
-import getApiKey
+from src import getApiKey
 
 def insertStage(stage_data):
     print('stage:')

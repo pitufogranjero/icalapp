@@ -4,8 +4,8 @@ import datetime
 from icalendar import Calendar, Event
 from supabase import create_client, Client
 
-
-import getApiKey
+#modules
+from src import getApiKey
 
 def createCalendar(teams,players,file_name):
 
@@ -31,7 +31,7 @@ def createCalendar(teams,players,file_name):
         
         url = baseurl + "fixtures?" + querys
         headers = {
-            "X-RapidAPI-Key": getApiKey.getApiKey('./api_key_rapid.txt'),  
+            "X-RapidAPI-Key": getApiKey.getApiKey('./src/api_key_rapid.txt'),  
             "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com"
         }
         print('Query: ' + querys)
@@ -65,7 +65,7 @@ def createCalendar(teams,players,file_name):
     
 
     supabase_url = 'https://juyljyipfkmaqnhijnsp.supabase.co'
-    supabase_key = getApiKey.getApiKey('./api_key.txt')
+    supabase_key = getApiKey.getApiKey('./src/api_key.txt')
 
     supabase: Client = create_client(supabase_url, supabase_key)
 
@@ -92,6 +92,6 @@ def createCalendar(teams,players,file_name):
             event.add('dtend', datetime.datetime(dt.year, dt.month, dt.day, dt.hour+2, dt.minute, dt.second))
             cal.add_component(event)
 
-
-    with open('../' + file_name, 'wb') as f:
+    print(file_name)
+    with open('./' + file_name, 'wb') as f:
         f.write(cal.to_ical())

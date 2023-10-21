@@ -3,15 +3,15 @@ from datetime import timedelta, datetime
 import datetime
 
 #modules
-import getApiKey
-import insertPlayer
+from src import getApiKey
+from src import insertPlayer
 
 def insertEvent(event_data,stage_id):
     print('event:')    
     print(event_data['event_id'])
 
     supabase_url = 'https://juyljyipfkmaqnhijnsp.supabase.co'
-    supabase_key = getApiKey.getApiKey('./api_key.txt')
+    supabase_key = getApiKey.getApiKey('./src/api_key.txt')
 
     supabase: Client = create_client(supabase_url, supabase_key)
 

@@ -6,11 +6,13 @@ from icalendar import Calendar, Event
 import json
 
 #modules
-import getUsers
-import getUserTeams
-import getUserPlayers
-import createCalendar
-import getUserUrl
+from src import getUsers
+from src import getUserTeams
+from src import getUserPlayers
+from src import getUserUrl
+from src import createCalendar
+from src import getTennisMatches
+
 
 import os
 
@@ -19,6 +21,9 @@ os.system('clear')
 # consultamos los id de los usuarios
 usersList = getUsers.getUsers()
 # print(usersList)
+
+getTennisMatches.getTennisMatches(1)
+getTennisMatches.getTennisMatches(2)
 
 # consultamos los equipos de cada usuario
 for user in usersList:

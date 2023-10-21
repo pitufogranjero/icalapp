@@ -4,12 +4,12 @@ import datetime
 from icalendar import Calendar, Event
 
 #modules
-import getApiKey
-import getDay
-import insertStage
-import insertEvent
+from src import getApiKey
+from src import getDay
+from src import insertStage
+from src import insertEvent
 
-def getTennisMatches(file_name,days_difference):
+def getTennisMatches(days_difference):
 
     cal = Calendar()
 
@@ -22,7 +22,7 @@ def getTennisMatches(file_name,days_difference):
     url = baseurl + str(dateToCheck) + '/' + str(offset) + '/' + params
 
     headers = {
-        "X-RapidAPI-Key": getApiKey.getApiKey('./api_key_rapid.txt'),  
+        "X-RapidAPI-Key": getApiKey.getApiKey('./src/api_key_rapid.txt'),  
         "X-RapidAPI-Host": "sports-api20.p.rapidapi.com"
     }
 
@@ -69,4 +69,4 @@ def getTennisMatches(file_name,days_difference):
 
 
 
-getTennisMatches('file_name',1)
+# getTennisMatches(1)
