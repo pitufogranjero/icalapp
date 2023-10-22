@@ -4,8 +4,7 @@ from supabase import create_client, Client
 from src import getApiKey
 
 def insertPlayer(id,name):
-    print('player:')
-    print(name)
+    print('player -> ' + name)
 
     supabase_url = 'https://juyljyipfkmaqnhijnsp.supabase.co'
     supabase_key = getApiKey.getApiKey('./src/api_key.txt')

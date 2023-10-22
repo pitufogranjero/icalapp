@@ -26,21 +26,21 @@ def getTennisMatches(days_difference):
         "X-RapidAPI-Host": "sports-api20.p.rapidapi.com"
     }
 
-    print(url)
+    # print(url)
 
     # print('\n\n\n\n\n')
     # response = ''
     response = requests.get(url, headers=headers)
     # print(response.text)
 
-    if response.status_code == 200:  
+    if response.status_code == 200:
 
         data = response.json()  
         stages = data['stages']
         # print(stages)
 
         for stage in stages:
-            print(stage['category_code'])
+            print('\nStage category -> ' + stage['category_code'])
             if stage['category_code'] == 'atp-challenger':
                 continue
 

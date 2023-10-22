@@ -23,11 +23,11 @@ usersList = getUsers.getUsers()
 # print(usersList)
 
 getTennisMatches.getTennisMatches(1)
-getTennisMatches.getTennisMatches(2)
+# getTennisMatches.getTennisMatches(2)
 
 # consultamos los equipos de cada usuario
 for user in usersList:
-    print('User id: ' + user['id'])
+    print('\nUser id -> ' + user['id'])
     
     # print('\nUser teams:')
     user_teams = getUserTeams.getUserTeams(user['id'])
@@ -38,7 +38,7 @@ for user in usersList:
     # print(user_players)
 
     # creamos un archivo por cada usuario
-    if(len(user_teams) > 0):
+    if(len(user_teams) > 0 or len(user_players) > 0):
         # print('entro')
 
         # leo la url del usuario
@@ -47,14 +47,11 @@ for user in usersList:
         if(user_url['calendar_url'] != None):
             file_name = user_url['calendar_url'] + '.ics'
 
-            createCalendar.createCalendar(user_teams,user_players,file_name)
+            try:
+                createCalendar.createCalendar(user_teams,user_players,file_name)
+            except Exception as e:
+                print('Exception:',e)
 
         # complete_user_url = 'https://www.czr.es/calendars/' + user_url['calendar_url'] + '.ics'
         # print(complete_user_url)
 
-
-
-
-
-
-# metemos en la bbdd la url de cada usuario

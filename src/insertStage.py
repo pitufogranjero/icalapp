@@ -4,8 +4,8 @@ from supabase import create_client, Client
 from src import getApiKey
 
 def insertStage(stage_data):
-    print('stage:')
-    print(stage_data['stage_id'] + ' (' + stage_data['stage_name'] + ' - ' + stage_data['category_code'] + ')')
+    # print('stage:')
+    # print(stage_data['stage_id'] + ' (' + stage_data['stage_name'] + ' - ' + stage_data['category_code'] + ')')
 
     supabase_url = 'https://juyljyipfkmaqnhijnsp.supabase.co'
     supabase_key = getApiKey.getApiKey('./src/api_key.txt')

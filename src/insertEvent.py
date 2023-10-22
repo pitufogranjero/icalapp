@@ -5,10 +5,11 @@ import datetime
 #modules
 from src import getApiKey
 from src import insertPlayer
+from src import getPlayerId
 
 def insertEvent(event_data,stage_id):
-    print('event:')    
-    print(event_data['event_id'])
+    # print('event:')    
+    # print(event_data['event_id'])
 
     supabase_url = 'https://juyljyipfkmaqnhijnsp.supabase.co'
     supabase_key = getApiKey.getApiKey('./src/api_key.txt')
@@ -16,7 +17,34 @@ def insertEvent(event_data,stage_id):
     supabase: Client = create_client(supabase_url, supabase_key)
 
     insertPlayer.insertPlayer(event_data['t1'][0]['id'],event_data['t1'][0]['name'])
+
+    #check if I have player 1 information
+    data, count = supabase.table('players').select('allsports_id').eq('player_id',event_data['t1'][0]['id']).execute()
+
+    data = data[1]
+
+    if data[0]['allsports_id'] is not None:
+        try:
+            getPlayerId.getPlayerId(event_data['t1'][0]['id'],event_data['t1'][0]['name'])
+            print('upsert player ' + event_data['t1'][0]['id'])
+        except Exception as e:
+            print("Exception:", e)
+
     insertPlayer.insertPlayer(event_data['t2'][0]['id'],event_data['t2'][0]['name'])
+
+    #check if I have player 2 information
+    data, count = supabase.table('players').select('allsports_id').eq('player_id',event_data['t2'][0]['id']).execute()
+
+    data = data[1]
+
+    if data[0]['allsports_id'] is not None:
+        try:
+            getPlayerId.getPlayerId(event_data['t2'][0]['id'],event_data['t1'][0]['name'])
+            print('upsert player ' + event_data['t2'][0]['id'])
+        except Exception as e:
+            print("Exception:", e)
+
+
     """
     CONVERSION OF DATE TIME
 
